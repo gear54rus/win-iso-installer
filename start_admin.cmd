@@ -10,9 +10,9 @@ copy /y setup\* WSFUSB\files\winsetup\
 copy /y util\altmbr.bin altmbr.bin
 util\printf \x0%partition% >> altmbr.bin
 echo Writing new MBR to disk %drive%...
-util\dd if=\\?\Device\Harddisk2\Partition0 of=mbr.temp bs=512 count=1
+util\dd if=\\?\Device\Harddisk%drive%\Partition0 of=mbr.temp bs=512 count=1
 util\dd if=altmbr.bin of=mbr.temp bs=440 count=1
-util\dd if=mbr.temp of=\\?\Device\Harddisk2\Partition0 bs=512 count=1
+util\dd if=mbr.temp of=\\?\Device\Harddisk%drive%\Partition0 bs=512 count=1
 del altmbr.bin
 del mbr.temp
 echo Done.
